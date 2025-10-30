@@ -62,7 +62,7 @@ namespace config {
 		}
 
 		if (data.find("esp_skeleton_color_enemy") != data.end()) {
-			esp_box_color_enemy = {
+			esp_skeleton_color_enemy = {
 				data["esp_skeleton_color_enemy"][0].get<int>(),
 				data["esp_skeleton_color_enemy"][1].get<int>(),
 				data["esp_skeleton_color_enemy"][2].get<int>()

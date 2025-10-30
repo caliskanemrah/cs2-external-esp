@@ -84,28 +84,70 @@ namespace hack {
 			float distance = g_game.localOrigin.calculate_distance(player->origin);
 			int roundedDistance = std::round(distance / 10.f);
 
+			if (config::show_skeleton_esp) {
+				// Önce iskelet çizgilerini çiz
+				for (const auto& connection : boneConnections) {
+					const std::string& boneFrom = connection.first;
+					const std::string& boneTo = connection.second;
+
+					COLORREF skeletonColor = g_game.localTeam == player->team
+						? config::esp_skeleton_color_team
+						: config::esp_skeleton_color_enemy;
+
+					// Gölge efekti için önce siyah çizgi
+					render::DrawLine(
+						g::hdcBuffer,
+						player->bones.bonePositions[boneFrom].x + 1,
+						player->bones.bonePositions[boneFrom].y + 1,
+						player->bones.bonePositions[boneTo].x + 1,
+						player->bones.bonePositions[boneTo].y + 1,
+						RGB(0, 0, 0)
+					);
+
+					// Asýl renkli çizgi
+					render::DrawLine(
+						g::hdcBuffer,
+						player->bones.bonePositions[boneFrom].x,
+						player->bones.bonePositions[boneFrom].y,
+						player->bones.bonePositions[boneTo].x,
+						player->bones.bonePositions[boneTo].y,
+						skeletonColor
+					);
+				}
+			}
+
 			if (config::show_head_tracker) {
+				COLORREF headColor = g_game.localTeam == player->team
+					? config::esp_skeleton_color_team
+					: config::esp_skeleton_color_enemy;
+
+				// Gölge efekti için siyah daire
+				render::DrawCircle(
+					g::hdcBuffer,
+					player->bones.bonePositions["head"].x + 1,
+					player->bones.bonePositions["head"].y - width / 12 + 1,
+					width / 5,
+					RGB(0, 0, 0)
+				);
+
+				// Asýl renkli daire
 				render::DrawCircle(
 					g::hdcBuffer,
 					player->bones.bonePositions["head"].x,
 					player->bones.bonePositions["head"].y - width / 12,
 					width / 5,
-					(g_game.localTeam == player->team ? config::esp_skeleton_color_team : config::esp_skeleton_color_enemy)
+					headColor
 				);
-			}
 
-			if (config::show_skeleton_esp) {
-				for (const auto& connection : boneConnections) {
-					const std::string& boneFrom = connection.first;
-					const std::string& boneTo = connection.second;
-
-					render::DrawLine(
-						g::hdcBuffer,
-						player->bones.bonePositions[boneFrom].x, player->bones.bonePositions[boneFrom].y,
-						player->bones.bonePositions[boneTo].x, player->bones.bonePositions[boneTo].y,
-						g_game.localTeam == player->team ? config::esp_skeleton_color_team : config::esp_skeleton_color_enemy
-					);
-				}
+				// Ýçi dolu küçük nokta (hedef noktasý)
+				render::DrawFilledBox(
+					g::hdcBuffer,
+					player->bones.bonePositions["head"].x - 2,
+					player->bones.bonePositions["head"].y - width / 12 - 2,
+					4,
+					4,
+					headColor
+				);
 			}
 
 			if (config::show_box_esp)
@@ -120,26 +162,46 @@ namespace hack {
 				);
 			}
 
+			// Health bar - Dolu kýsým
+			float healthWidth = width * player->health / 100.0f;
+			render::DrawFilledBox(
+				g::hdcBuffer,
+				screenHead.x - width / 2,
+				screenHead.y - 10,
+				healthWidth,
+				6,
+				RGB((255 - player->health), (55 + player->health * 2), 75)
+			);
+
+			// Health bar - Eksik kýsým (çizgili)
 			render::DrawBorderBox(
 				g::hdcBuffer,
-				screenHead.x - (width / 2 + 10),
-				screenHead.y + (height * (100 - player->armor) / 100),
-				2,
-				height - (height * (100 - player->armor) / 100),
+				screenHead.x - width / 2,
+				screenHead.y - 10,
+				width,  // Tam geniþlik
+				6,
+				RGB(255, 100, 100)  // Açýk kýrmýzý çerçeve
+			);
+
+			// Armor bar - Dolu kýsým
+			float armorWidth = width * player->armor / 100.0f;
+			render::DrawFilledBox(
+				g::hdcBuffer,
+				screenHead.x - width / 2,
+				screenHead.y - 3,
+				armorWidth,
+				6,
 				RGB(0, 185, 255)
 			);
 
+			// Armor bar - Eksik kýsým (çizgili)
 			render::DrawBorderBox(
 				g::hdcBuffer,
-				screenHead.x - (width / 2 + 5),
-				screenHead.y + (height * (100 - player->health) / 100),
-				2,
-				height - (height * (100 - player->health) / 100),
-				RGB(
-					(255 - player->health),
-					(55 + player->health * 2),
-					75
-				)
+				screenHead.x - width / 2,
+				screenHead.y - 3,
+				width,  // Tam geniþlik
+				6,
+				RGB(100, 200, 255)  // Açýk mavi çerçeve
 			);
 
 			render::RenderText(
