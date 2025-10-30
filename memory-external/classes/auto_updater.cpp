@@ -237,8 +237,6 @@ namespace updater {
 			offsets::m_hController = data["m_hController"];
 		if (data["m_iszPlayerName"].is_number())
 			offsets::m_iszPlayerName = data["m_iszPlayerName"];
-		if (data["m_angEyeAngles"].is_number())
-			offsets::m_angEyeAngles = data["m_angEyeAngles"];
 
 		return true;
 	}
@@ -273,7 +271,6 @@ namespace updater {
 		data["m_iTeamNum"] = offsets::m_iTeamNum;
 		data["m_hController"] = offsets::m_hController;
 		data["m_iszPlayerName"] = offsets::m_iszPlayerName;
-		data["m_angEyeAngles"] = offsets::m_angEyeAngles;
 
 		std::ofstream output(file_path);
 		output << std::setw(4) << data << std::endl;

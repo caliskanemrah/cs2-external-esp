@@ -66,6 +66,7 @@ public:
 	void loop();
 	void close();
 	Vector3 world_to_screen(Vector3* v);
+private:
 	view_matrix_t view_matrix;
 	uintptr_t entity_list;
 	uintptr_t localPlayer;

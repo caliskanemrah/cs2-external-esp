@@ -58,6 +58,5 @@ namespace updater {
 		inline std::ptrdiff_t m_iTeamNum = 0x0;
 		inline std::ptrdiff_t m_hController = 0x0;
 		inline std::ptrdiff_t m_iszPlayerName = 0x0;
-		inline std::ptrdiff_t m_angEyeAngles = 0x0;
 	}
 }
