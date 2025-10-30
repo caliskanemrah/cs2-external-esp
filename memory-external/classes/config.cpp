@@ -76,12 +76,40 @@ namespace config {
 				data["esp_name_color"][2].get<int>()
 			};
 		}
-
 		if (data.find("esp_distance_color") != data.end()) {
 			esp_distance_color = {
 				data["esp_distance_color"][0].get<int>(),
 				data["esp_distance_color"][1].get<int>(),
 				data["esp_distance_color"][2].get<int>()
+			};
+		}
+
+		if (data.find("esp_hp_color") != data.end()) {
+			esp_hp_color = {
+				data["esp_hp_color"][0].get<int>(),
+				data["esp_hp_color"][1].get<int>(),
+				data["esp_hp_color"][2].get<int>()
+			};
+		}
+		if (data.find("esp_armor_color") != data.end()) {
+			esp_armor_color = {
+				data["esp_armor_color"][0].get<int>(),
+				data["esp_armor_color"][1].get<int>(),
+				data["esp_armor_color"][2].get<int>()
+			};
+		}
+		if (data.find("esp_weapon_color") != data.end()) {
+			esp_weapon_color = {
+				data["esp_weapon_color"][0].get<int>(),
+				data["esp_weapon_color"][1].get<int>(),
+				data["esp_weapon_color"][2].get<int>()
+			};
+		}
+		if (data.find("esp_money_color") != data.end()) {
+			esp_money_color = {
+				data["esp_money_color"][0].get<int>(),
+				data["esp_money_color"][1].get<int>(),
+				data["esp_money_color"][2].get<int>()
 			};
 		}
 
@@ -111,6 +139,10 @@ namespace config {
 		data["esp_skeleton_color_enemy"] = { esp_box_color_enemy.r, esp_box_color_enemy.g, esp_box_color_enemy.b };
 		data["esp_name_color"] = { esp_name_color.r, esp_name_color.g, esp_name_color.b };
 		data["esp_distance_color"] = { esp_distance_color.r, esp_distance_color.g, esp_distance_color.b };
+		data["esp_hp_color"] = { esp_hp_color.r, esp_hp_color.g, esp_hp_color.b };
+		data["esp_armor_color"] = { esp_armor_color.r, esp_armor_color.g, esp_armor_color.b };
+		data["esp_weapon_color"] = { esp_weapon_color.r, esp_weapon_color.g, esp_weapon_color.b };
+		data["esp_money_color"] = { esp_money_color.r, esp_money_color.g, esp_money_color.b };
 
 		//data["rainbow"] = rainbow;
 		//data["rainbow_speed"] = rainbow_speed;

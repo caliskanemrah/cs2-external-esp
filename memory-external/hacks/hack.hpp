@@ -146,9 +146,18 @@ namespace hack {
 				g::hdcBuffer,
 				screenHead.x + (width / 2 + 5),
 				screenHead.y,
+				(std::to_string(roundedDistance) + "m away").c_str(),
+				config::esp_distance_color,
+				17
+			);
+
+			render::RenderText(
+				g::hdcBuffer,
+				screenHead.x + (width / 2 + 5),
+				screenHead.y + 20,
 				player->name.c_str(),
 				config::esp_name_color,
-				10
+				15
 			);
 
 			/**
@@ -160,27 +169,21 @@ namespace hack {
 			render::RenderText(
 				g::hdcBuffer,
 				screenHead.x + (width / 2 + 5),
-				screenHead.y + 10,
-				(std::to_string(player->health) + "hp").c_str(),
-				RGB(
-					(255 - player->health),
-					(55 + player->health * 2),
-					75
-				),
-				10
+				screenHead.y + 40,
+				("Can :" + std::to_string(player->health) + "hp").c_str(),
+				config::esp_hp_color,
+				15
 			);
 
+			const char* zirhText = "Zirh: ";
+			std::string displayText = std::string(zirhText) + std::to_string(player->armor);
 			render::RenderText(
 				g::hdcBuffer,
 				screenHead.x + (width / 2 + 5),
-				screenHead.y + 20,
-				(std::to_string(player->armor) + "armor").c_str(),
-				RGB(
-					(255 - player->armor),
-					(55 + player->armor * 2),
-					75
-				),
-				10
+				screenHead.y + 55,
+				displayText.c_str(),
+				config::esp_armor_color,
+				15
 			);
 
 			if (config::show_extra_flags)
@@ -188,28 +191,21 @@ namespace hack {
 				render::RenderText(
 					g::hdcBuffer,
 					screenHead.x + (width / 2 + 5),
-					screenHead.y + 30,
-					player->weapon.c_str(),
-					config::esp_distance_color,
-					10
+					screenHead.y + 70,
+					("Silah : " + player->weapon).c_str(),
+					config::esp_weapon_color,
+					15
 				);
+
+				
 
 				render::RenderText(
 					g::hdcBuffer,
 					screenHead.x + (width / 2 + 5),
-					screenHead.y + 40,
-					(std::to_string(roundedDistance) + "m away").c_str(),
-					config::esp_distance_color,
-					10
-				);
-
-				render::RenderText(
-					g::hdcBuffer,
-					screenHead.x + (width / 2 + 5),
-					screenHead.y + 50,
-					("$" + std::to_string(player->money)).c_str(),
-					RGB(0, 125, 0),
-					10
+					screenHead.y + 85,
+					("Para : $" + std::to_string(player->money)).c_str(),
+					config::esp_money_color,
+					15
 				);
 
 				if (player->flashAlpha > 100)
@@ -220,7 +216,7 @@ namespace hack {
 						screenHead.y + 60,
 						"Player is flashed",
 						config::esp_distance_color,
-						10
+						15
 					);
 				}
 
