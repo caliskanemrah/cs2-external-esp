@@ -13,7 +13,7 @@ namespace updater {
 		std::string last_commit_date = commit["date"];
 		std::string last_commit_author_name = commit["name"];
 
-		std::cout << "[updater] Last GitHub repository update was made by " << last_commit_author_name << " on " << last_commit_date.substr(0, 10) << std::endl;
+		//std::cout << "[updater] Last GitHub repository update was made by " << last_commit_author_name << " on " << last_commit_date.substr(0, 10) << std::endl;
 
 		// Parse the GitHub date string and convert it to a std::tm structure
 		std::tm commit_tm_date = {};
@@ -237,6 +237,9 @@ namespace updater {
 			offsets::m_hController = data["m_hController"];
 		if (data["m_iszPlayerName"].is_number())
 			offsets::m_iszPlayerName = data["m_iszPlayerName"];
+		if (data["m_angEyeAngles"].is_number())
+			offsets::m_angEyeAngles = data["m_angEyeAngles"];
+		
 
 		return true;
 	}
@@ -271,6 +274,7 @@ namespace updater {
 		data["m_iTeamNum"] = offsets::m_iTeamNum;
 		data["m_hController"] = offsets::m_hController;
 		data["m_iszPlayerName"] = offsets::m_iszPlayerName;
+		data["m_angEyeAngles"] = offsets::m_angEyeAngles;		
 
 		std::ofstream output(file_path);
 		output << std::setw(4) << data << std::endl;
