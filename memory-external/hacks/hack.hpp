@@ -167,9 +167,9 @@ namespace hack {
 			render::DrawFilledBox(
 				g::hdcBuffer,
 				screenHead.x - width / 2,
-				screenHead.y - 10,
+				screenHead.y - 30,
 				healthWidth,
-				6,
+				5,
 				RGB((255 - player->health), (55 + player->health * 2), 75)
 			);
 
@@ -177,9 +177,9 @@ namespace hack {
 			render::DrawBorderBox(
 				g::hdcBuffer,
 				screenHead.x - width / 2,
-				screenHead.y - 10,
+				screenHead.y - 30,
 				width,  // Tam geniþlik
-				6,
+				5,
 				RGB(255, 100, 100)  // Açýk kýrmýzý çerçeve
 			);
 
@@ -188,9 +188,9 @@ namespace hack {
 			render::DrawFilledBox(
 				g::hdcBuffer,
 				screenHead.x - width / 2,
-				screenHead.y - 3,
+				screenHead.y - 20,
 				armorWidth,
-				6,
+				5,
 				RGB(0, 185, 255)
 			);
 
@@ -198,9 +198,9 @@ namespace hack {
 			render::DrawBorderBox(
 				g::hdcBuffer,
 				screenHead.x - width / 2,
-				screenHead.y - 3,
+				screenHead.y - 20,
 				width,  // Tam geniþlik
-				6,
+				5,
 				RGB(100, 200, 255)  // Açýk mavi çerçeve
 			);
 
