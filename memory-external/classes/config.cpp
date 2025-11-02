@@ -135,8 +135,8 @@ namespace config {
 
 		data["esp_box_color_team"] = { esp_box_color_team.r, esp_box_color_team.g, esp_box_color_team.b };
 		data["esp_box_color_enemy"] = { esp_box_color_enemy.r, esp_box_color_enemy.g, esp_box_color_enemy.b };
-		data["esp_skeleton_color_team"] = { esp_box_color_team.r, esp_box_color_team.g, esp_box_color_team.b };
-		data["esp_skeleton_color_enemy"] = { esp_box_color_enemy.r, esp_box_color_enemy.g, esp_box_color_enemy.b };
+		data["esp_skeleton_color_team"] = { esp_skeleton_color_team.r, esp_skeleton_color_team.g, esp_skeleton_color_team.b };
+		data["esp_skeleton_color_enemy"] = { esp_skeleton_color_enemy.r, esp_skeleton_color_enemy.g, esp_skeleton_color_enemy.b };
 		data["esp_name_color"] = { esp_name_color.r, esp_name_color.g, esp_name_color.b };
 		data["esp_distance_color"] = { esp_distance_color.r, esp_distance_color.g, esp_distance_color.b };
 		data["esp_hp_color"] = { esp_hp_color.r, esp_hp_color.g, esp_hp_color.b };
